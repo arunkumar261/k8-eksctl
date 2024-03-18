@@ -70,6 +70,11 @@ curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$
 
 tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 
+# Wait until eksctl binary is extracted
+while [ ! -f /tmp/eksctl ]; do
+    sleep 1
+done
+
 sudo mv /tmp/eksctl /usr/local/bin
 
 VALIDATE $? "eksctl installation"
